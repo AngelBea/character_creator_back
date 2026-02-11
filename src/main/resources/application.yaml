@@ -1,0 +1,6 @@
+ktor:
+  application:
+    modules:
+      - dnd-tools.ApplicationKt.module
+  deployment:
+    port: 8080
