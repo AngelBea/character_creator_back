@@ -32,13 +32,10 @@ object Labels{
     enum class DndClass(val tags: List<ClassTag>) : Label {
         BARBARIAN(
             listOf(
-                ClassTag.TRAINED,
                 ClassTag.FRONTLINE,
                 ClassTag.DAMAGE_SUSTAINED,
                 ClassTag.INSTINCTIVE,
                 ClassTag.SIMPLE,
-                ClassTag.AVENGER,
-                ClassTag.SURVIVOR
             )
         ),
 
@@ -49,7 +46,6 @@ object Labels{
                 ClassTag.SOCIAL,
                 ClassTag.ADAPTIVE,
                 ClassTag.MODERATE,
-                ClassTag.PERFORMER
             )
         ),
 
@@ -60,8 +56,6 @@ object Labels{
                 ClassTag.CONTROL,
                 ClassTag.STRATEGIC,
                 ClassTag.MODERATE,
-                ClassTag.GUARDIAN,
-                ClassTag.PROTECTOR
             )
         ),
 
@@ -72,67 +66,54 @@ object Labels{
                 ClassTag.SUPPORT,
                 ClassTag.STRATEGIC,
                 ClassTag.COMPLEX,
-                ClassTag.MYSTIC,
-                ClassTag.GUARDIAN
             )
         ),
 
         FIGHTER(
             listOf(
-                ClassTag.TRAINED,
                 ClassTag.FRONTLINE,
                 ClassTag.DAMAGE_SUSTAINED,
                 ClassTag.TACTICAL,
                 ClassTag.SIMPLE,
-                ClassTag.WARLORD
             )
         ),
 
         MONK(
             listOf(
-                ClassTag.TRAINED,
                 ClassTag.MOBILITY,
                 ClassTag.DAMAGE_SUSTAINED,
                 ClassTag.TACTICAL,
                 ClassTag.MODERATE,
-                ClassTag.MYSTIC
             )
         ),
 
         PALADIN(
             listOf(
                 ClassTag.DIVINE,
-                ClassTag.TRAINED,
                 ClassTag.FRONTLINE,
                 ClassTag.DAMAGE_BURST,
                 ClassTag.SUPPORT,
                 ClassTag.TACTICAL,
                 ClassTag.MODERATE,
-                ClassTag.PROTECTOR,
-                ClassTag.FANATIC
             )
         ),
 
         RANGER(
             listOf(
                 ClassTag.NATURE,
-                ClassTag.TRAINED,
                 ClassTag.DAMAGE_SUSTAINED,
                 ClassTag.MOBILITY,
                 ClassTag.TACTICAL,
                 ClassTag.MODERATE,
-                ClassTag.SURVIVOR
             )
         ),
 
         ROGUE(
             listOf(
-                ClassTag.TRAINED,
                 ClassTag.DAMAGE_BURST,
                 ClassTag.MOBILITY,
                 ClassTag.TACTICAL,
                 ClassTag.MODERATE,
-                ClassTag.TRICKSTER
             )
         ),
 
@@ -143,7 +124,6 @@ object Labels{
                 ClassTag.CONTROL,
                 ClassTag.ADAPTIVE,
                 ClassTag.MODERATE,
-                ClassTag.MYSTIC
             )
         ),
 
@@ -154,7 +134,6 @@ object Labels{
                 ClassTag.CONTROL,
                 ClassTag.ADAPTIVE,
                 ClassTag.MODERATE,
-                ClassTag.REBEL
             )
         ),
 
@@ -165,7 +144,6 @@ object Labels{
                 ClassTag.UTILITY,
                 ClassTag.STRATEGIC,
                 ClassTag.COMPLEX,
-                ClassTag.SCHOLAR
             )
         ),
 
@@ -176,22 +154,19 @@ object Labels{
                 ClassTag.SUPPORT,
                 ClassTag.STRATEGIC,
                 ClassTag.COMPLEX,
-                ClassTag.INVENTOR
             )
         );
 
         override val id = name.lowercase()
     }
 
-    enum class ClassTag: Label {
-        TRAINED,
+    enum class ClassTag : Label {
         DIVINE,
         ARCANE,
         INNATE,
         PACT,
         NATURE,
         CRAFT,
-        FANATIC,
 
         FRONTLINE,
         DAMAGE_BURST,
@@ -209,19 +184,7 @@ object Labels{
 
         SIMPLE,
         MODERATE,
-        COMPLEX,
-
-        PROTECTOR,
-        AVENGER,
-        SCHOLAR,
-        MYSTIC,
-        REBEL,
-        PERFORMER,
-        SURVIVOR,
-        TRICKSTER,
-        INVENTOR,
-        GUARDIAN,
-        WARLORD;
+        COMPLEX;
 
         override val id = name.lowercase()
     }

@@ -22,5 +22,5 @@ data class UserPickData(
     val characterClass: String? = null,
     val background: String? = null,
     val gender: String? = null,
-    val testAnswers: Map<String, List<String>> = mutableMapOf()
+    val testAnswers: Map<String, List<String>>
 )

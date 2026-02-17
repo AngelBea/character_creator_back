@@ -27,6 +27,7 @@ fun Application.configureRouting() {
             val userSession = call.request.cookies["USER_SESSION"]!!
             println(userSession)
             val userPicks = call.receive<UserPickData>()
+            println("USER PICKS -> $userPicks")
             val manager = Managers.getManager(userSession).nextStage(userPicks)
 
             call.respond<StageManagerDTO>(manager.toDto())
