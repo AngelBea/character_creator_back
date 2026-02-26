@@ -12,7 +12,6 @@ import dnd.dtos.UserPickData
 import dnd.managers.Stage
 import dnd.managers.Stage.*
 
-
 object Tests {
     class PickClassTest(userPickData: UserPickData){
         val answers = listOf(

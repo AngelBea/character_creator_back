@@ -16,6 +16,8 @@ import dnd.dtos.SelectionCardData
 import dnd.dtos.Test
 import dnd.dtos.UserPickData
 import dnd.dtos.setNextQuestion
+import dnd.factories.getClassTest
+import dnd.factories.getPickClassTest
 import dnd.managers.Stage.*
 import kotlinx.serialization.Serializable
 object Managers{
@@ -40,8 +42,22 @@ class StageManager(var stage: Stage, var nextStage: Stage, var previousStage: St
     }
 
     fun nextStage(userPickData: UserPickData): StageManager {
-        this.stage = this.stage.next(userPickData, this)
-        refresh(userPickData)
+        val currentTestNoMutable = this.currentTest
+        if (currentTestNoMutable != null){
+            val currentQuestionNumber = currentTestNoMutable?.currentQuestion?.number ?: -1
+            val numberOfQuestions = currentTestNoMutable?.numberOfQuestions ?: -1
+            if (currentQuestionNumber < numberOfQuestions){
+                this.stageTitle = currentTestNoMutable.setNextQuestion()?.question ?: "TEST FINISHED"
+            }
+        }else{
+            this.stage = this.stage.next(userPickData, this)
+            refresh(userPickData)
+        }
+
+        if (this.stageTitle === "TEST FINISHED"){
+            this.stage = this.stage.next(userPickData, this)
+            refresh(userPickData)
+        }
 
         return this
     }
@@ -51,11 +67,6 @@ class StageManager(var stage: Stage, var nextStage: Stage, var previousStage: St
         refresh(userPickData)
 
         return this
-    }
-
-    fun nextQuestion(){
-        val nextQuestion = currentTest?.setNextQuestion()
-        this.stageTitle = currentTest?.currentQuestion?.question ?: stageTitle
     }
 
     fun refresh(userPickData: UserPickData){
@@ -103,14 +114,9 @@ enum class Stage(): Label {
             CLASS_PICK -> BACKGROUND_PICK
             BACKGROUND_PICK -> NONE
             PICK_CLASS_TEST -> if (userPickData.testAnswers[FilterQuestion.DO_CLASS_TEST.id]?.first() == YES.id) CLASS_TEST else CLASS_PICK
-            CLASS_TEST -> nextQuestion(stageManager, CLASS_PICK)
+            CLASS_TEST -> CLASS_PICK
             NONE -> NONE
         }
-    }
-
-    fun nextQuestion(stageManager: StageManager, nextStage: Stage): Stage{
-        stageManager.nextQuestion()
-        return if (stageManager.currentTest == null) nextStage else this
     }
 
     fun title(): String{
@@ -137,8 +143,8 @@ enum class Stage(): Label {
 
     fun getTest(userPickData: UserPickData): Test?{
         return when(this){
-            PICK_CLASS_TEST -> Tests.PickClassTest(userPickData).test
-            CLASS_TEST -> Tests.PickClassTest(userPickData).test
+            PICK_CLASS_TEST -> getPickClassTest(userPickData)
+            CLASS_TEST -> getClassTest(userPickData)
             else -> null
         }
 

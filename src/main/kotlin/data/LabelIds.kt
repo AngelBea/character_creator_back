@@ -307,24 +307,24 @@ object Labels{
         MARTIAL_WEAPONS(TagCategory.WEAPON_MASTERY),
 
         //Skills
-        ACROBATICS(TagCategory.SKILL),
-        ANIMAL_HANDLING(TagCategory.SKILL),
-        ARCANA(TagCategory.SKILL),
-        ATHLETICS(TagCategory.SKILL),
-        DECEPTION(TagCategory.SKILL),
-        HISTORY(TagCategory.SKILL),
-        INSIGHT(TagCategory.SKILL),
-        INTIMIDATION(TagCategory.SKILL),
-        INVESTIGATION(TagCategory.SKILL),
-        MEDICINE(TagCategory.SKILL),
-        NATURE(TagCategory.SKILL),
-        PERCEPTION(TagCategory.SKILL),
-        PERFORMANCE(TagCategory.SKILL),
-        PERSUASION(TagCategory.SKILL),
-        RELIGION(TagCategory.SKILL),
-        SLEIGHT_OF_HAND(TagCategory.SKILL),
-        STEALTH(TagCategory.SKILL),
-        SURVIVAL(TagCategory.SKILL);
+        ACROBATICS(TagCategory.SKILL), // Acrobacias
+        ARCANA(TagCategory.SKILL), // Conocimiento Arcano
+        ATHLETICS(TagCategory.SKILL), // Atletismo
+        DECEPTION(TagCategory.SKILL), // Engaño
+        HISTORY(TagCategory.SKILL), // Historia
+        INSIGHT(TagCategory.SKILL),// Perspicacia
+        INTIMIDATION(TagCategory.SKILL), // Intimidación
+        INVESTIGATION(TagCategory.SKILL),// Investigación
+        MEDICINE(TagCategory.SKILL),// Medicina
+        NATURE(TagCategory.SKILL),// Naturaleza
+        PERCEPTION(TagCategory.SKILL), // Percepcion
+        PERFORMANCE(TagCategory.SKILL), // Interpretación
+        PERSUASION(TagCategory.SKILL), // Persuasión
+        RELIGION(TagCategory.SKILL), // Religión
+        SLEIGHT_OF_HAND(TagCategory.SKILL), // Juego de manos
+        STEALTH(TagCategory.SKILL),// Sigilo
+        SURVIVAL(TagCategory.SKILL), // Supervivencia
+        ANIMAL_HANDLING(TagCategory.SKILL); // Trato con Animales
 
         override val id = name.lowercase()
     }
@@ -352,6 +352,28 @@ object Labels{
         override val id = name.lowercase()
     }
 
+    enum class ClassTestQuestion : Label {
+        LORD_ZAZ,
+        WISH_LADY,
+        DRAGON_EGG,
+        HEIR_SACRIFICE,
+        KNIGHT_ORDER,
+        INEXORABLE_FATE;
+
+        override val id = name.lowercase()
+    }
+
+    enum class ClassTestAnswer : Label {
+        ANS_1,
+        ANS_2,
+        ANS_3,
+        ANS_4,
+        ANS_5,
+        ANS_6;
+
+        override val id = name.lowercase()
+    }
+
     fun getAllLabels(): List<Label> {
         return mutableListOf<Label>().apply {
             addAll(RuleBook.entries.toTypedArray())
@@ -361,6 +383,8 @@ object Labels{
             addAll(ClassTag.entries.toTypedArray())
             addAll(FilterQuestion.entries.toTypedArray())
             addAll(Answer.entries.toTypedArray())
+            addAll(ClassTestQuestion.entries.toTypedArray())
+            addAll(ClassTestAnswer.entries.toTypedArray())
         }.toList()
     }
 }
